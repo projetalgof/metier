@@ -86,14 +86,14 @@ public class Metier
       //on verifie si le joueur a le parc d'atraction et si il a fait un double
       if(this.joueurActif.monumentActif("parc d'atraction") && this.joueurActif.estUnDouble())
       {
-        this.ctrl.rejouer(this.joueurActif);
+        this.ctrl.rejouer(this.joueurActif.getNom());
       }
       else this.joueurActif=joueurs.get((joueurs.indexOf(joueurActif)+1)%joueurs.size());
     }
     else
     {
       this.isEnd = true ;
-      this.ctrl.gagner(this.joueurActif);
+      this.ctrl.gagner(this.joueurActif.getNom());
     }
 
   }
@@ -219,7 +219,7 @@ public class Metier
             this.joueurActif.ajouterCarte(tmp);
             this.joueurActif.setPiece(-tmp.getCout());
             this.joueurActif.setAcheter(true);
-            this.ctrl.achatValide(this.joueurActif,tmp);
+            this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout()+"");
           } 
         }
       }
@@ -238,7 +238,8 @@ public class Metier
           this.joueurActif.activeMonument(achat);
           this.joueurActif.setPiece(-this.joueurActif.getMonument(achat).getCout());
           this.joueurActif.setAcheter(true);
-          this.ctrl.achatValide(this.joueurActif,this.joueurActif.getMonument(achat));
+          Carte tmp = this.joueurActif.getMonument(achat) ;
+          this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout()+"");
         }
         else this.ctrl.achatMonumentErreur();
       else this.ctrl.achatErreur();

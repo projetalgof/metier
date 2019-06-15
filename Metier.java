@@ -54,12 +54,12 @@ public class Metier
           joueurActif = joueur;
       }
     }
-    this.ctrl.transition(this.joueurActif);
+    this.ctrl.transition(this.joueurActif.getNom());
     this.lanceDe();
 
     do
     {
-      this.ctrl.afficherEtatJoueur(this.joueurActif);
+      this.ctrl.afficherEtatJoueur(this.joueurActif.getListCartes(),this.joueurActif.getNom(),this.joueurActif.getPiece());
       choix=this.ctrl.choix();
       switch(choix)
       {
@@ -76,7 +76,7 @@ public class Metier
       }
     }
     while(choix != 'P' && !this.joueurActif.getAcheter());
-    this.ctrl.afficherEtatJoueur(this.joueurActif);
+    this.ctrl.afficherEtatJoueur(this.joueurActif.getListCartes(),this.joueurActif.getNom(),this.joueurActif.getPiece());
     //on reinitialise l'achat du joueur et on change de joueur
     this.joueurActif.setAcheter(false);
     this.joueurActif.setDeuxJet(false);
@@ -193,7 +193,7 @@ public class Metier
       }
       else this.joueurActif.jetDe(1);
     }
-    this.ctrl.jetDe(this.joueurActif);
+    this.ctrl.jetDe(this.joueurActif.getDe(0),this.joueurActif.getDe(1));
     //les perte et gain de piece
     this.payer();
     this.gain();

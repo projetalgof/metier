@@ -84,7 +84,7 @@ public class Metier
     if(!this.joueurActif.aGagner())
     {
       //on verifie si le joueur a le parc d'atraction et si il a fait un double
-      if(this.joueurActif.monumentActif("parc d'atraction") && this.joueurActif.estUnDouble())
+      if(this.joueurActif.monumentActif("parc d'attraction") && this.joueurActif.estUnDouble())
       {
         this.ctrl.rejouer(this.joueurActif.getNom());
       }

@@ -18,7 +18,7 @@ public class Joueur
 
 	public Joueur(String nom) 
 	{
-		if(this.jetDe == null) this.jetDe = new int[2];
+		if(Joueur.jetDe == null) Joueur.jetDe = new int[2];
 		this.nom        = nom;
 		this.listCartes = new ArrayList<Carte>();
 		this.numJoueur  = Joueur.nbJoueur++;
@@ -27,7 +27,7 @@ public class Joueur
 	public void gain(Joueur joueurActif,Controleur ctrl) 
 	{
 		String de ; 
-		ArrayList<Carte> tmpList = (ArrayList<Carte>)this.listCartes.clone();
+		ArrayList<Carte> tmpList = this.copyArrayList();
         for(Carte carte : tmpList)
         {
 			if( !(carte instanceof CarteRouge) && !(carte instanceof Monument))
@@ -64,24 +64,33 @@ public class Joueur
             }
         if(-1 != indexRemove)
             this.listCartes.remove(indexRemove);
-        System.out.println("erezrzr   "+ indexRemove);
+    }
+
+    public Carte retirerCarte(String nom)
+    {
+    	Carte tmp =null;
+        for(Carte carte: this.listCartes)
+            if(carte.getNom().equals(nom)) tmp=carte;
+
+        if(tmp != null)this.listCartes.remove(tmp);
+        return tmp;
     }
 	//jet un nombre de dé
 	public void jetDe(int nbDe) 
 	{
 		int resultat = 0;
-		this.jetDe[0] = this.jetDe[1] = 0;
+		Joueur.jetDe[0] = Joueur.jetDe[1] = 0;
 		for (int i = 0; i < nbDe; i++)
 		{
-			this.jetDe[i] = (int)(Math.random() * 6 + 1);
-			resultat += this.jetDe[i];
+			Joueur.jetDe[i] = (int)(Math.random() * 6 + 1);
+			resultat += Joueur.jetDe[i];
 		}
-		this.sommeDe=resultat;
+		Joueur.sommeDe=resultat;
 	}
 	//verifie si le dernier joueur a fait un double
 	public boolean estUnDouble()
 	{
-		return this.jetDe[0] == this.jetDe[1] ; 
+		return Joueur.jetDe[0] == Joueur.jetDe[1] ; 
 	}
 	//ajoute une carte au joueur
 	public void ajouterCarte(Carte carte) 
@@ -107,6 +116,17 @@ public class Joueur
     		if (carte.getNom().equals(nom)) return true ;
     	}
     	return false ; 
+	}
+
+	// retourne une copie de surface
+	private ArrayList<Carte> copyArrayList() 
+	{
+		ArrayList<Carte> tmp = new ArrayList<Carte>();
+		for (Carte carte : this.listCartes) 
+		{
+			tmp.add(carte);
+		}
+		return tmp;
 	}
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -135,13 +155,13 @@ public class Joueur
 	}
 	//----------------------------------------------------------------------------------------------------------------
 	//                                             GET
-	public String     getNom       ()       { return this.nom;      }
-	public boolean    getAcheter   ()       { return this.aAcheter; }
-	public boolean    getDeuxJet   ()       { return this.deuxJet;  }
-	public int        getSommeDe   ()       { return this.sommeDe ; }
-	public int        getPiece     ()       { return this.piece;    }
-	public int        getNum       ()       { return this.numJoueur;}
-	public int        getDe        (int de) { return this.jetDe[de];}
+	public String     getNom       ()       { return this.nom;        }
+	public boolean    getAcheter   ()       { return this.aAcheter;   }
+	public boolean    getDeuxJet   ()       { return this.deuxJet;    }
+	public int        getSommeDe   ()       { return Joueur.sommeDe ; }
+	public int        getPiece     ()       { return this.piece;      }
+	public int        getNum       ()       { return this.numJoueur;  }
+	public int        getDe        (int de) { return Joueur.jetDe[de];}
 
 	//retourne une copie profonde de la list de carte
 	public ArrayList<Carte> getListCartes() 
@@ -197,9 +217,9 @@ public class Joueur
 	{
 		if(Controleur.DEBUG)
 		{
-			this.jetDe[0]   = a ;
-			this.jetDe[1]   = b ;
-			this.sommeDe = a + b ;
+			Joueur.jetDe[0]   = a ;
+			Joueur.jetDe[1]   = b ;
+			Joueur.sommeDe = a + b ;
 		}
 	}
 }

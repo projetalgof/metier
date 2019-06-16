@@ -142,7 +142,7 @@ public class Metier
           {
             for(int i = 2 ; i<chaine.length;i=i+2)
             {
-              for(int j = 0; j < new Integer(chaine[i+1]) ;j++)
+              for(int j = 0; j < Integer.parseInt(chaine[i+1]) ;j++)
               {
                 Carte tmp = this.banque.retirer(chaine[i]);
                 if(tmp != null )this.getJoueur(chaine[0]).ajouterCarte(tmp);
@@ -151,7 +151,7 @@ public class Metier
           }
           if(chaine[1].equals("piece"))
           {
-            this.getJoueur(chaine[0]).setPiece(-Regle.PIECE_DEPART + new Integer(chaine[2]));
+            this.getJoueur(chaine[0]).setPiece(-Regle.PIECE_DEPART + Integer.parseInt(chaine[2]));
           }
           if(chaine[1].equals("monument"))
           {

@@ -20,13 +20,19 @@ public class Carte implements Comparable<Carte>
 	}
 
 	// constructeur par recopie
-	public Carte(Carte autreCarte) 
+	protected Carte(Carte autreCarte) 
 	{
-		this.declencheur = autreCarte.declencheur;
-		this.nom         = autreCarte.nom;
-		this.type        = autreCarte.type;
-		this.cout        = autreCarte.cout;
-		this.piece       = autreCarte.piece;
+		this(autreCarte.declencheur,autreCarte.nom,autreCarte.type,autreCarte.cout,autreCarte.piece);
+	}
+	public static Carte recopieCarte(Carte autreCarte)
+	{
+		Carte tmp =null;
+		if     (autreCarte instanceof CarteRouge)   tmp = new CarteRouge((CarteRouge)autreCarte);
+		else if(autreCarte instanceof CarteVerte)   tmp = new CarteVerte((CarteVerte)autreCarte);
+		else if(autreCarte instanceof CarteBleu)    tmp = new CarteBleu((CarteBleu)autreCarte);
+		else if(autreCarte instanceof CarteViolet)  tmp = new CarteViolet((CarteViolet)autreCarte);
+		else if(autreCarte instanceof Monument)     tmp = new Monument((Monument)autreCarte);
+		return tmp ; 
 	}
 
 	//activation de l'effet carte

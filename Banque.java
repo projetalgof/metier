@@ -57,7 +57,7 @@ public class Banque
 
     	for(Carte carte : this.cartes)
     	{
-    		tmp.add(new Carte (carte));
+    		tmp.add(Carte.recopieCarte(carte));
     	}
     	return tmp ; 
 	}

@@ -37,7 +37,7 @@ public class Regle
 		Carte tmp;
 		for (Joueur joueur : joueurs) 
 		{
-
+			//cree et donne les monuments a joueru
 			for (int i = 0; i < monuments.length; i++) 
 			{
 				tmp = EnumCarte.valueOf(Regle.monuments[i]).creeCarte();
@@ -46,12 +46,10 @@ public class Regle
 			}
 
 			joueur.setPiece(Regle.PIECE_DEPART); // ajout du nombre de piece de depart
-			tmp = champs;
-			if (tmp != null)
-				joueur.ajouterCarte(tmp);
-			tmp = boulangerie;
-			if (tmp != null)
-				joueur.ajouterCarte(tmp);
+			if (champs != null)
+				joueur.ajouterCarte(champs);
+			if (boulangerie != null)
+				joueur.ajouterCarte(boulangerie);
 		}
 
 	}
@@ -64,11 +62,7 @@ public class Regle
 		{
 			for (int i = 0; i < nb; i++) 
 			{
-				//verifie la class pour utilise le bon constructeur par recopie
-				if     (carte instanceof CarteRouge)   tmp = new CarteRouge((CarteRouge)carte);
-				else if(carte instanceof CarteVerte)   tmp = new CarteVerte((CarteVerte)carte);
-				else if(carte instanceof CarteBleu)    tmp = new CarteBleu((CarteBleu)carte);
-				else if(carte instanceof CarteViolet)  tmp = new CarteViolet((CarteViolet)carte);
+				tmp=Carte.recopieCarte(carte);
 				if(tmp != null )banque.ajouter(tmp);
 			}
 		}

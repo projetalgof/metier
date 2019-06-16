@@ -9,6 +9,11 @@ public class Monument extends Carte
 		super("",nom, "monument",cout,0);
 		this.isBuild = false;
 	}
+	public Monument(Monument autreMonument)
+	{
+		super(autreMonument);
+		this.isBuild=autreMonument.isBuild;
+	}
 
   //-------------------------------------------------------------------------------------------------------------------
   //----------------------------------------------------------GET------------------------------------------------------

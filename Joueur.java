@@ -26,22 +26,28 @@ public class Joueur
 	//active les action de carte qui raporte des piece de la banque
 	public void gain(Joueur joueurActif,Controleur ctrl) 
 	{
+		String de ; 
 		for(Carte carte : this.listCartes) 
 		{
 			if( !(carte instanceof CarteRouge) && !(carte instanceof Monument))
-			{
-				if ((carte.getDeclencheur().indexOf((Joueur.sommeDe + ""))) >= 0) carte.action(this,joueurActif,ctrl);
+			{	
+				if(Joueur.sommeDe < 10) de ="0"+Joueur.sommeDe;
+				else de=Joueur.sommeDe+"";
+				if ((carte.getDeclencheur().indexOf((de))) >= 0) carte.action(this,joueurActif,ctrl);
 			}
 		}
 	}
 	//active les action de carte qui rapporte des piece des autre joueur
 	public void payer(Joueur joueurActif,Controleur ctrl)
 	{
+		String de ; 
 		for(Carte carte : this.listCartes) 
 		{
 			if(carte instanceof CarteRouge  && !(carte instanceof Monument))
 			{
-				if ((carte.getDeclencheur().indexOf((Joueur.sommeDe + ""))) >= 0)  carte.action(this,joueurActif,ctrl);
+				if(Joueur.sommeDe < 10) de ="0"+Joueur.sommeDe;
+				else de=Joueur.sommeDe+"";
+				if ((carte.getDeclencheur().indexOf((de))) >= 0)  carte.action(this,joueurActif,ctrl);
 			}
 		}
 	}
@@ -128,7 +134,7 @@ public class Joueur
 		ArrayList<Carte> tmp = new ArrayList<Carte>();
 		for (Carte carte : this.listCartes) 
 		{
-			tmp.add(carte);
+			tmp.add(Carte.recopieCarte(carte));
 		}
 		return tmp;
 	}

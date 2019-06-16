@@ -219,7 +219,7 @@ public class Metier
             this.joueurActif.ajouterCarte(tmp);
             this.joueurActif.setPiece(-tmp.getCout());
             this.joueurActif.setAcheter(true);
-            this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout()+"");
+            this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout());
           } 
         }
       }
@@ -239,7 +239,7 @@ public class Metier
           this.joueurActif.setPiece(-this.joueurActif.getMonument(achat).getCout());
           this.joueurActif.setAcheter(true);
           Carte tmp = this.joueurActif.getMonument(achat) ;
-          this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout()+"");
+          this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout());
         }
         else this.ctrl.achatMonumentErreur();
       else this.ctrl.achatErreur();

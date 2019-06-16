@@ -63,7 +63,8 @@ public class CarteViolet extends Carte
 			}
 			else if("centre d'affaire".equals(this.nom))
 			{
-				Carte carteChoisit = null;
+				Carte carteChoisit1 = null;
+				Carte carteChoisit2 = null;
 				String nomCarte;
 				//controle et enrengistre le joueur choisie
 				Joueur joueurChoisit = ctrl.getMetier().choisitUnJoueur(joueurActif);
@@ -72,23 +73,25 @@ public class CarteViolet extends Carte
 				//affiche demande
 				ctrl.donnerLeCarte(joueurActif.getNom());
 				//controle et enrengistre la carte choisi a echanger
-				carteChoisit = ctrl.getMetier().choisitUnCarte(joueurChoisit);
-				nomCarte=carteChoisit.getNom();
-				//on donne la carte au joueur actif
-				joueurActif.ajouterCarte(carteChoisit);
-				//on suprime la carte au joueur choisi
-				joueurChoisit.removeUnCarte(carteChoisit);
+				carteChoisit1 = ctrl.getMetier().choisitUnCarte(joueurChoisit);
 				
 				//affiche la demande
 				ctrl.donnerLeCarte(joueurChoisit.getNom());
 				//affiche letat du joueur actif
 				ctrl.afficherEtatJoueur(joueurActif.getListCartes(),joueurActif.getNom(),joueurActif.getPiece());
-				carteChoisit =  ctrl.getMetier().choisitUnCarte(joueurActif);
+				carteChoisit2 =  ctrl.getMetier().choisitUnCarte(joueurActif);
+				
+				//on donne la carte au joueur actif
+				joueurActif.ajouterCarte(carteChoisit1);
+				//on suprime la carte au joueur choisi
+				joueurChoisit.removeUnCarte(carteChoisit1);
+				
 				//on donne la carte au joueur choisi
-				joueurChoisit.ajouterCarte(carteChoisit);
-				joueurActif.removeUnCarte(carteChoisit);
+				joueurChoisit.ajouterCarte(carteChoisit2);
+				//on suprime la carte au joueur actif
+				joueurActif.removeUnCarte(carteChoisit2);
 
-				ctrl.echange(joueurActif.getNom(),nomCarte,joueurChoisit.getNom(),carteChoisit.getNom());
+				ctrl.echange(joueurActif.getNom(),carteChoisit1.getNom(),joueurChoisit.getNom(),carteChoisit2.getNom());
 				
 			}
 				

@@ -243,6 +243,11 @@ public class Metier
           this.joueurActif.setAcheter(true);
           Carte tmp = this.joueurActif.getMonument(achat) ;
           this.ctrl.achatValide(this.joueurActif.getNom(),tmp.getNom(),tmp.getCout());
+          //s'assure que l'on puisse pas rejouer le tour d'achat d'un parc
+          if(tmp.getNom().equals("parc d'attraction"))
+          {
+            this.joueurActif.setJetDe(0,1);
+          }
         }
         else this.ctrl.achatMonumentErreur();
       else this.ctrl.achatErreur();

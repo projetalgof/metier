@@ -215,11 +215,9 @@ public class Joueur
 	//modifie le jet de de DEBUG
 	public void setJetDe(int a,int b)
 	{
-		if(Controleur.DEBUG)
-		{
-			Joueur.jetDe[0]   = a ;
-			Joueur.jetDe[1]   = b ;
-			Joueur.sommeDe = a + b ;
-		}
+
+		Joueur.jetDe[0] = a ;
+		Joueur.jetDe[1] = b ;
+		Joueur.sommeDe  = a + b ;
 	}
 }

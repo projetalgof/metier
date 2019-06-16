@@ -68,12 +68,12 @@ public class CarteViolet extends Carte
 				ctrl.donnerLeCarteAQu(joueurActif.getNom());
 				carteChoisit = ctrl.getMetier().choisitUnCarte(joueurChoisit);
 				joueurActif.ajouterCarte(carteChoisit);
-				joueurChoisit.getListCartes().remove(carteChoisit);
+				joueurChoisit.removeUnCarte(carteChoisit);
 				
 				ctrl.donnerLeCarteAQu(joueurChoisit.getNom());
 				carteChoisit =  ctrl.getMetier().choisitUnCarte(joueurActif);
 				joueurChoisit.ajouterCarte(carteChoisit);
-				joueurActif.getListCartes().remove(carteChoisit);
+				joueurChoisit.removeUnCarte(carteChoisit);
 				
 			}
 				

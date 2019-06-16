@@ -27,8 +27,9 @@ public class Joueur
 	public void gain(Joueur joueurActif,Controleur ctrl) 
 	{
 		String de ; 
-		for(Carte carte : this.listCartes) 
-		{
+		ArrayList<Carte> tmpList = (ArrayList<Carte>)this.listCartes.clone();
+        for(Carte carte : tmpList)
+        {
 			if( !(carte instanceof CarteRouge) && !(carte instanceof Monument))
 			{	
 				if(Joueur.sommeDe < 10) de ="0"+Joueur.sommeDe;
@@ -51,6 +52,20 @@ public class Joueur
 			}
 		}
 	}
+	// remove un Carte
+    public void removeUnCarte(Carte autre)
+    {
+        int indexRemove = -1;
+        for(Carte tmp: this.listCartes)
+            if(tmp.getNom().equals(autre.getNom()))
+            {
+                indexRemove = this.listCartes.indexOf(tmp);
+                break;
+            }
+        if(-1 != indexRemove)
+            this.listCartes.remove(indexRemove);
+        System.out.println("erezrzr   "+ indexRemove);
+    }
 	//jet un nombre de dé
 	public void jetDe(int nbDe) 
 	{
@@ -66,7 +81,7 @@ public class Joueur
 	//verifie si le dernier joueur a fait un double
 	public boolean estUnDouble()
 	{
-		return this.jetDe[0]== this.jetDe[1] ; 
+		return this.jetDe[0] == this.jetDe[1] ; 
 	}
 	//ajoute une carte au joueur
 	public void ajouterCarte(Carte carte) 

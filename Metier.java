@@ -155,7 +155,10 @@ public class Metier
           }
           if(chaine[1].equals("monument"))
           {
-            this.getJoueur(chaine[0]).activeMonument(chaine[2]);
+            for(int i =2;i<chaine.length;i++)
+            {
+              this.getJoueur(chaine[0]).activeMonument(chaine[i]);
+            }
           }
         }
         if(chaine[0].equals("tour"))
